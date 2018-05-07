@@ -1,0 +1,11 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.billing.statusbillingStatus.controller.Tabs" xmlns:html="http://www.w3.org/1999/xhtml">
+	<IconTabBar id="idIconTabBar" expanded="false" select="handleIconTabBarSelect" class="sapUiResponsiveContentPadding" expandable="false">
+		<items>
+			<IconTabFilter id="payed" icon="sap-icon://begin" iconColor="Positive" count="" text="Pagadas" key="Ok"/>
+			<IconTabFilter id="toPay" icon="sap-icon://compare" iconColor="Critical" count="" text="Por Vencer" key="Heavy"/>
+			<IconTabFilter id="dues" icon="sap-icon://inventory" iconColor="Negative" count="" text="Vencidas"
+				key="Overweight"/>
+		</items>
+	</IconTabBar>
+</mvc:View>

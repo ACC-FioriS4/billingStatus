@@ -1,0 +1,87 @@
+<mvc:View controllerName="com.billing.statusbillingStatus.controller.main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:model="sap.ui.model" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<App>
+		<NavContainer id="navCon">
+			<pages>
+				<Page id="mainview" enableScrolling="true" showHeader="false">
+					<mvc:XMLView viewName="com.billing.statusbillingStatus.view.Tabs"/>
+					<Table id="creditListItem" items="{ path: '/d/results', sorter: { path: 'DocumentDate', descending: true }}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{/d/results/0/CustomerName}" level="H2"/>
+								<ToolbarSpacer></ToolbarSpacer>
+								<!--Button id="normalIcon" text="Normal" icon="sap-icon://document" press="onNormal"/>
+								<Button id="specialIcon" text="Especiales" icon="sap-icon://unfavorite" press="onSpecial"/-->
+								<Button id="clearedIcon" text="Pagadas" icon="sap-icon://status-positive" press="onCleared"/>
+								
+								<Button id="openIcon" text="Pendientes" type="Emphasized" icon="sap-icon://status-error" press="onOpen"/>
+								<Button id="downloadIcon" text="Descargar" icon="sap-icon://download" press="onDataExport"/>
+								<Button id="clearIcon" icon="sap-icon://clear-filter" press="onClearFilters" visible="false"/>
+								
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<!--Column id="statusClear" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>status}"/>
+							</Column-->
+							<!--Column mergeDuplicates="true" id="SalesDocument" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>so}"/>
+							</Column-->
+							<Column mergeDuplicates="true" id="assignCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Número de Factura"/>
+							</Column>
+							<!--Column mergeDuplicates="true" id="AccountingDocument" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>refDoc}"/>
+							</Column-->
+							<Column id="journalCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>label1}"/>
+							</Column>
+							<Column id="specialCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>label3}"/>
+							</Column>
+							<Column id="netDueCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>label4}"/>
+							</Column>
+							<Column id="dayCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="{i18n>labelDays}"/>
+							</Column>
+							<!--Column id="dueCol" hAlign="End">
+								<Text text="{i18n>label5}"/>
+							</Column-->
+							<Column id="amountCol" hAlign="End">
+								<Text text="{i18n>label6}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<!--ObjectStatus icon="{path: 'IsCleared', formatter: '.isClearedOrNot'}" state="{path: 'IsCleared', formatter: '.iconIsClearedOrNot'}"/-->
+									<!--Text text="{SalesDocument}"/-->
+									<Text text="{BillingDocument}"/>
+									<!--Text text="{AccountingDocument}"/-->
+									<Text text="{DocumentDate}"/>
+									<ObjectStatus text="{path: 'SpecialGeneralLedgerCode', formatter: '.specialGlText'}"
+									icon ="{path: 'SpecialGeneralLedgerCode', formatter: '.specialGl'}" 
+									state="{path: 'SpecialGeneralLedgerCode', formatter: '.iconColorSpecial'}"/>
+									<Text text="{NetDueDate}"/>
+									<Text text="{path: 'NetDueArrearsDays', formatter: '.formatter.dayLogic'}"/>
+									<!--ObjectStatus icon="sap-icon://time-overtime" state="{path: 'DueNetSymbol', formatter: '.iconColor'}"/-->
+									<ObjectNumber
+										number="{parts:[{path:'AmountInTransactionCurrency'},{path:'TransactionCurrency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+										unit="{TransactionCurrency}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<footer>
+						<OverflowToolbar>
+							<Text id="totalAccountLabel" text="Total de la cuenta:"/>
+							<ToolbarSpacer/>
+							<Text id="totalAccount" text=" "/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+			</pages>
+		</NavContainer>
+	</App>
+</mvc:View>
